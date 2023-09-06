@@ -38,4 +38,26 @@ try {
 }
 }
 
+export const editarProducto= async(req, res) =>{
+    try {
+        // ir a la base de datos y pedir los productos
+        //aqui los datos deberian estar validados
+        //extraer el parametro ID de la ruta
+        console.log(req.params.id)
+        console.log(req.body)
+       await Producto.findByIdAndUpdate(req.params.id,req.body)
+        
+        res.status(201).json({
+            mensaje:'El producto fue creado correctamente'
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            mensaje:'No se puede editar el producto'
+        })
+    }
+}
+
+
+
 
