@@ -56,8 +56,29 @@ export const editarProducto= async(req, res) =>{
             mensaje:'No se puede editar el producto'
         })
     }
+
+
+
 }
 
+export const borrarProducto= async(req, res) =>{
+    try {
+        // ir a la base de datos y pedir los productos
+        //aqui los datos deberian estar validados
+        //extraer el parametro ID de la ruta
+        console.log(req.params.id)
+        console.log(req.body)
+       await Producto.findByIdAndDelete(req.params.id);
+        res.status(201).json({
+            mensaje:'El producto fue borrado correctamente'
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            mensaje:'No se pudo eliminar el producto'
+        })
+    }
+}
 
 
 
