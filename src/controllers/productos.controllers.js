@@ -80,5 +80,19 @@ export const borrarProducto= async(req, res) =>{
     }
 }
 
+export const obtenerProducto= async(req, res) =>{
+    try {
+       
+        const productoBuscado = await Producto.findById(req.params.id)
+       
+        res.status(200).json(productoBuscado)
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            mensaje:'No se pudo obtener el producto'
+        })
+    }
+}
+
 
 
