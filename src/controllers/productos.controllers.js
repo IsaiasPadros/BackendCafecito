@@ -87,6 +87,7 @@ export const obtenerProducto= async(req, res) =>{
        
         res.status(200).json(productoBuscado)
     } catch (error) {
+        //puedo agregar un IF en caso de obtener NULL, es el caso en el que el ID no tenga formato de MONGO.
         console.log(error);
         res.status(400).json({
             mensaje:'No se pudo obtener el producto'
