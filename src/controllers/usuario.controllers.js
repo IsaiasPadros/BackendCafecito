@@ -18,11 +18,16 @@ export const login = async (req, res) => {
     }
     //desencriptar y comparar password
 
+    const passwordValido = bcrypt.compareSync(password, usuario.password);
+    if(!passwordValido){
+       return res.status(400).json({mensaje:'Correo o password invalido- password'})
+    }
+
     //responder que el usuario es correcto
     res.status(200).json({
       mensaje: "El usuario existe",
       uid: usuario._id,
-      nombre: usuario.usuario,
+      nombre: usuario.nombreUsuario,
     });
   } catch (error) {
     console.log(error);
